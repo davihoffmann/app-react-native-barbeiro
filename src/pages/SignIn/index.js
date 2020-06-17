@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Image } from 'react-native';
 import logo from '~/assets/logo.png';
 import Background from '~/components/Background';
@@ -42,3 +43,8 @@ export default function SignIn({ navigation }) {
     </Background>
   );
 }
+
+SignIn.propTypes = {
+  navigation: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+    .isRequired,
+};
