@@ -8,9 +8,27 @@ import SignUp from '~/pages/SignUp';
 const AuthStack = createStackNavigator();
 
 const AuthRoutes = () => (
-  <AuthStack.Navigator>
-    <AuthStack.Screen name="SignIn" component={SignIn} />
-    <AuthStack.Screen name="SignUp" component={SignUp} />
+  <AuthStack.Navigator mode="modal" headerMode="screen">
+    <AuthStack.Screen
+      options={{
+        title: 'Login',
+        headerTransparent: true,
+        headerTitleStyle: { color: '#fff' },
+      }}
+      name="SignIn"
+      component={SignIn}
+    />
+    <AuthStack.Screen
+      options={{
+        title: 'Criar Conta',
+        headerTransparent: true,
+        headerBackTitle: 'Voltar',
+        headerTitleStyle: { color: '#fff' },
+        headerBackTitleStyle: { color: '#fff' },
+      }}
+      name="SignUp"
+      component={SignUp}
+    />
   </AuthStack.Navigator>
 );
 
