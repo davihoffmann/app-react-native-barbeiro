@@ -21,24 +21,25 @@ const AgendamentoRoutes = ({ navigation }) => (
       headerLeftContainerStyle: {
         marginLeft: 15,
       },
-      headerLeft: () => (
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Dashboard');
-          }}
-        >
-          <Icon name="chevron-left" size={28} color="#fff" />
-        </TouchableOpacity>
-      ),
     }}
   >
     <AgendamentoStack.Screen
       options={{
         title: 'Selecionar Barbeiro',
+        headerLeft: () => (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Dashboard');
+            }}
+          >
+            <Icon name="chevron-left" size={28} color="#fff" />
+          </TouchableOpacity>
+        ),
       }}
       name="SelectProvider"
       component={SelectProvider}
     />
+
     <AgendamentoStack.Screen
       options={{
         title: 'Selecionar Horário',
