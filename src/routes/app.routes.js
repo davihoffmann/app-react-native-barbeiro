@@ -6,6 +6,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
 
+import AgendamentoRoutes from './agendamento.routes';
+
 const AppTab = createBottomTabNavigator();
 
 const AppRoutes = () => (
@@ -26,6 +28,19 @@ const AppRoutes = () => (
         tabBarIcon: ({ color }) => {
           return <Icon name="event" size={20} color={color} />;
         },
+      }}
+    />
+
+    <AppTab.Screen
+      name="AgendamentoRoutes"
+      component={AgendamentoRoutes}
+      options={{
+        title: 'Agendar',
+        // eslint-disable-next-line react/prop-types
+        tabBarIcon: ({ color }) => {
+          return <Icon name="add-circle-outline" size={20} color={color} />;
+        },
+        tabBarVisible: false,
       }}
     />
 
