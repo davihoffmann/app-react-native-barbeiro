@@ -29,7 +29,7 @@ export default function SelectProvider({ navigation }) {
             <Provider
               onPress={() => {
                 navigation.navigate('SelectDateTime', {
-                  providerId: provider.id,
+                  provider,
                 });
               }}
             >

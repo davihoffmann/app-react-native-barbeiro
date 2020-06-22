@@ -60,6 +60,15 @@ const AgendamentoRoutes = ({ navigation }) => (
     <AgendamentoStack.Screen
       options={{
         title: 'Confirmar Agendamento',
+        headerLeft: () => (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('SelectDateTime');
+            }}
+          >
+            <Icon name="chevron-left" size={28} color="#fff" />
+          </TouchableOpacity>
+        ),
       }}
       name="Confirm"
       component={Confirm}

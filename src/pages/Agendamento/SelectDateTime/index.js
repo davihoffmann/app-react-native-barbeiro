@@ -11,11 +11,11 @@ export default function SelectDateTime({ route, navigation }) {
   const [date, setDate] = useState(new Date());
   const [hours, setHours] = useState([]);
 
-  const { providerId } = route.params;
+  const { provider } = route.params;
 
   useEffect(() => {
     async function loadAvailable() {
-      const response = await api.get(`providers/${providerId}/available`, {
+      const response = await api.get(`providers/${provider.id}/available`, {
         params: {
           date: date.getTime(),
         },
@@ -25,11 +25,11 @@ export default function SelectDateTime({ route, navigation }) {
     }
 
     loadAvailable();
-  }, [date, providerId]);
+  }, [date, provider.id]);
 
   function handleSelectHour(time) {
     navigation.navigate('Confirm', {
-      providerId,
+      provider,
       time,
     });
   }
