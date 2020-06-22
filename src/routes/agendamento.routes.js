@@ -43,6 +43,15 @@ const AgendamentoRoutes = ({ navigation }) => (
     <AgendamentoStack.Screen
       options={{
         title: 'Selecionar Horário',
+        headerLeft: () => (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('SelectProvider');
+            }}
+          >
+            <Icon name="chevron-left" size={28} color="#fff" />
+          </TouchableOpacity>
+        ),
       }}
       name="SelectDateTime"
       component={SelectDateTime}
