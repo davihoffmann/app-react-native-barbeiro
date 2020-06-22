@@ -1,18 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import api from '~/services/api';
 
 import Background from '~/components/Background';
 import DateInput from '~/components/DateInput';
 
-import { Container } from './styles';
+import { Container, HourList, Hour, Title } from './styles';
 
-export default function SelectDateTime() {
+export default function SelectDateTime({ route, navigation }) {
   const [date, setDate] = useState(new Date());
+  const [hours, setHours] = useState([]);
+
+  const { providerId } = route.params;
+
+  useEffect(() => {
+    async function loadAvailable() {
+      const response = await api.get(`providers/${providerId}/available`, {
+        params: {
+          date: date.getTime(),
+        },
+      });
+
+      setHours(response.data);
+    }
+
+    loadAvailable();
+  }, [date, providerId]);
+
+  function handleSelectHour(time) {
+    navigation.navigate('Confirm', {
+      providerId,
+      time,
+    });
+  }
 
   return (
     <Background>
       <Container>
         <DateInput date={date} onChange={setDate} />
+
+        <HourList
+          data={hours}
+          keyExtractor={(item) => item.time}
+          renderItem={({ item }) => (
+            <Hour
+              onPress={() => handleSelectHour(item.value)}
+              enabled={item.available}
+            >
+              <Title>{item.time}</Title>
+            </Hour>
+          )}
+        />
       </Container>
     </Background>
   );
 }
+
+SelectDateTime.propTypes = {
+  route: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+  navigation: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+    .isRequired,
+};

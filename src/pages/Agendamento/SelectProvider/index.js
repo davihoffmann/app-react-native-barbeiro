@@ -28,7 +28,9 @@ export default function SelectProvider({ navigation }) {
           renderItem={({ item: provider }) => (
             <Provider
               onPress={() => {
-                navigation.navigate('SelectDateTime', { provider });
+                navigation.navigate('SelectDateTime', {
+                  providerId: provider.id,
+                });
               }}
             >
               <Avatar
